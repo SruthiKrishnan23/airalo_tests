@@ -1,0 +1,26 @@
+{
+  "name": "airalo_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "APITest": "npx playwright test tests/airalo_api_test.spec.js",
+    "Cucumber_WebTest": "npx cucumber-js --format html:cucumber_report.html --retry 1",
+    "All_Tests": "npm run APITest && npm run Cucumber_WebTest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.10",
+    "allure-playwright": "^3.2.1",
+    "typescript": "^5.8.2",
+    "dotenv": "^16.5.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "exceljs": "^4.4.0"
+  }
+}
