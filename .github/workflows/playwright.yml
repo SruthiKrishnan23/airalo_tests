@@ -26,7 +26,7 @@ jobs:
     - name: Run All Tests
       # This command assumes 'npm run All_Tests' in your package.json
       # is configured to execute both Playwright and Cucumber tests.
-      run: npm run All_Tests
+      run: xvfb-run npm run All_Tests
 
     - name: Upload Test Reports
       
@@ -37,5 +37,4 @@ jobs:
         path: |
           test-results/
           playwright-report/ # Path to Playwright's default HTML report directory
-          cucumber_report.html # Path to Cucumber's HTML report file
         retention-days: 30 # How long to keep the artifact (e.g., 30 days)
