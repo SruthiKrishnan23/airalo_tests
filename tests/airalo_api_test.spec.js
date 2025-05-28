@@ -67,7 +67,7 @@ let accessToken;
   });
 
   // --- Test Case 2: POST an order for 6 "merhaba-7days-1gb" eSIMs and GET the eSims List---
-  test('POST an order for 6 "merhaba-7days-1gb" eSIMs and Get The eSims List', async ({ request }) => {
+  test('POST an order for 6 "merhaba-7days-1gb" eSIMs', async ({ request }) => {
     // Skip this test if the access token was not obtained
     test.skip(!accessToken, 'Skipping order POST test: Access token not available')
 
@@ -195,6 +195,135 @@ console.log('All order response assertions passed successfully!')
 console.log('Order POST test for 6 "merhaba-7days-1gb" eSIMs passed.')
 console.log('----------------------------------------------------------------------------')
 
+ });
+// --- Test Case 3: Get the list of eSims ordered for  "merhaba-7days-1gb" ---
+  test('Get The eSims List of "merhaba-7days-1gb" eSIMs ', async ({ request }) => {
+    // Skip this test if the access token was not obtained
+    test.skip(!accessToken, 'Skipping order POST test: Access token not available')
+
+    const quantity = 6;
+    const packageId = 'merhaba-7days-1gb';
+    const description = `PlaceOrder for ${quantity} ${packageId} eSIMs`
+
+    console.log(`--- Starting Order POST Request to: ${ORDER_ESIMS_URL} ---`)
+
+    console.log(`Attempting to POST order for 6 "merhaba-7days-1gb" eSIMs to: ${ORDER_ESIMS_URL}`)
+
+  const response = await request.post(ORDER_ESIMS_URL, {
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${accessToken}`, 
+  },
+  form: { 
+    quantity: String(quantity), 
+    package_id: packageId, 
+    //type: 'sim',
+    description: description, 
+    //brand_settings_name: 'our perfect brand',
+  },
+});
+
+//Assertion of HTTP status code
+expect(response.status()).toBe(200)
+console.log(`Order POST request status: ${response.status()}`)
+
+//Parse the JSON response body
+const responseBody = await response.json()
+console.log('Order POST Response Body:', JSON.stringify(responseBody, null, 2))
+
+//Assertions
+expect(responseBody).toHaveProperty('data')
+expect(responseBody).toHaveProperty('meta')
+expect(responseBody.meta).toHaveProperty('message', 'success')
+
+//Assertion of order details
+expect(responseBody.data).toHaveProperty('id')
+expect(typeof responseBody.data.id).toBe('number')
+
+expect(responseBody.data).toHaveProperty('code')
+expect(typeof responseBody.data.code).toBe('string')
+
+expect(responseBody.data).toHaveProperty('currency', 'USD')
+expect(responseBody.data).toHaveProperty('package_id', packageId)
+expect(responseBody.data).toHaveProperty('quantity', 6)
+expect(responseBody.data).toHaveProperty('type', 'sim')
+expect(responseBody.data).toHaveProperty('description', description)
+expect(responseBody.data).toHaveProperty('esim_type', 'Prepaid')
+expect(responseBody.data).toHaveProperty('validity', 7)
+expect(responseBody.data).toHaveProperty('package', 'Merhaba-1 GB - 7 Days')
+expect(responseBody.data).toHaveProperty('data', '1 GB')
+expect(responseBody.data).toHaveProperty('price', 4.5)
+expect(responseBody.data).toHaveProperty('created_at')
+expect(typeof responseBody.data.created_at).toBe('string')
+
+expect(responseBody.data).toHaveProperty('manual_installation')
+expect(typeof responseBody.data.manual_installation).toBe('string')
+expect(responseBody.data.manual_installation).toContain('To manually activate the eSIM')
+
+expect(responseBody.data).toHaveProperty('qrcode_installation')
+expect(typeof responseBody.data.qrcode_installation).toBe('string')
+expect(responseBody.data.qrcode_installation).toContain('To activate the eSIM by scanning the QR code') 
+
+expect(responseBody.data).toHaveProperty('installation_guides')
+expect(typeof responseBody.data.installation_guides).toBe('object')
+expect(responseBody.data.installation_guides).toHaveProperty('en', 'https://www.airalo.com/help/getting-started-with-airalo');
+
+expect(responseBody.data).toHaveProperty('text', null)
+expect(responseBody.data).toHaveProperty('voice', null)
+expect(responseBody.data).toHaveProperty('net_price', 3.6)
+expect(responseBody.data).toHaveProperty('brand_settings_name', null)
+
+// Assertions for sim properties
+expect(responseBody.data).toHaveProperty('sims')
+expect(Array.isArray(responseBody.data.sims)).toBe(true)
+expect(responseBody.data.sims.length).toBe(quantity)
+
+for (const esim of responseBody.data.sims) {
+  expect(esim).toHaveProperty('id');
+  expect(typeof esim.id).toBe('number')
+  expect(esim).toHaveProperty('created_at')
+  expect(typeof esim.created_at).toBe('string')
+
+  expect(esim).toHaveProperty('iccid')
+  expect(typeof esim.iccid).toBe('string')
+
+  expect(esim).toHaveProperty('lpa', 'lpa.airalo.com')
+  expect(esim).toHaveProperty('imsis', null)
+  expect(esim).toHaveProperty('matching_id', 'TEST')
+  expect(esim).toHaveProperty('qrcode')
+  expect(typeof esim.qrcode).toBe('string')
+  expect(esim.qrcode).toContain('LPA:1$lpa.airalo.com$TEST')
+
+  expect(esim).toHaveProperty('qrcode_url')
+  expect(typeof esim.qrcode_url).toBe('string')
+  expect(esim.qrcode_url).toContain('https://sandbox.airalo.com/qr?')
+
+  expect(esim).toHaveProperty('airalo_code', null)
+  expect(esim).toHaveProperty('apn_type', 'manual')
+  expect(esim).toHaveProperty('apn_value', 'airalo2')
+  expect(esim).toHaveProperty('is_roaming', true)
+  expect(esim).toHaveProperty('confirmation_code', null)
+
+  expect(esim).toHaveProperty('apn')
+  expect(typeof esim.apn).toBe('object')
+  expect(esim.apn).toHaveProperty('ios')
+  expect(esim.apn.ios).toHaveProperty('apn_type', 'manual')
+  expect(esim.apn.ios).toHaveProperty('apn_value', 'airalo2')
+  expect(esim.apn).toHaveProperty('android')
+  expect(esim.apn.android).toHaveProperty('apn_type', 'manual')
+  expect(esim.apn.android).toHaveProperty('apn_value', 'airalo2')
+
+  expect(esim).toHaveProperty('msisdn', null);
+
+  expect(esim).toHaveProperty('direct_apple_installation_url')
+  expect(typeof esim.direct_apple_installation_url).toBe('string')
+  expect(esim.direct_apple_installation_url).toContain('https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$lpa.airalo.com$TEST');
+}
+
+console.log('All order response assertions passed successfully!')
+
+console.log('Order POST test for 6 "merhaba-7days-1gb" eSIMs passed.')
+console.log('----------------------------------------------------------------------------')
 //Get the list of eSim Details Posted by previous request
 
       const orderCreatedAtDate = responseBody.data.created_at.split(' ')[0] // Extracting YYYY-MM-DD
@@ -296,12 +425,9 @@ console.log('-------------------------------------------------------------------
         expect(esim.simable).toHaveProperty('manual_installation')
         expect(esim.simable).toHaveProperty('qrcode_installation')
         expect(esim.simable).toHaveProperty('installation_guides')
-        //expect(esim.simable).toHaveProperty('status');
-        //expect(esim.simable.status).toHaveProperty('name');
-        //expect(esim.simable.status).toHaveProperty('slug');
-        //expect(esim.simable).toHaveProperty('user');
-        //expect(esim.simable).toHaveProperty('sharing');
+      
       }
-  
-      console.log('\n--- Both order POST and eSIMs GET verification passed successfully. ---');
-  });
+    
+      console.log('\n--- Both order POST and eSIMs GET verification passed successfully. ---')
+    });
+ 

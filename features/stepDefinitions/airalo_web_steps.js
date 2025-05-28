@@ -11,19 +11,21 @@ Before(async function () {
 });
 
 After(async function () {
-  await this.closeBrowser();
+  await this.closeBrowser()
 });
 
 // --- Given Steps ---
 
 Given('I am on the Airalo homepage', async function () {
-  await this.poManager.getHomePage().navigate();
+  await this.poManager.getHomePage().navigatetoHomePage()
+  await this.poManager.getHomePage().verifyHomePage()
+  await this.poManager.getHomePage().acceptCookie_denyNotification()
 });
 
 // --- When Steps ---
 
 When('I search for {string}', async function (country) {
-  await this.poManager.getHomePage().searchFor(country);
+  await this.poManager.getHomePage().searchAndSelectCountry(country)
 });
 
 When('I click on {string} eSIM buy button', async function (eSimName) {
