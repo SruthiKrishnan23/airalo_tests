@@ -29,13 +29,13 @@ jobs:
       run: npm run All_Tests
 
     - name: Upload Test Reports
-      # This step uploads both the Playwright HTML report and the Cucumber HTML report
-      # as a single artifact, making them available for download in GitHub Actions.
+      
       if: ${{ !cancelled() }} # Only upload if the job wasn't cancelled
       uses: actions/upload-artifact@v4
       with:
         name: test-reports # A descriptive name for the uploaded artifact
         path: |
+          test-results/
           playwright-report/ # Path to Playwright's default HTML report directory
           cucumber_report.html # Path to Cucumber's HTML report file
         retention-days: 30 # How long to keep the artifact (e.g., 30 days)
