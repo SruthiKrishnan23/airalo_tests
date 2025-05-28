@@ -90,6 +90,7 @@ npm run Cucumber_WebTest
 This command will:
 Execute the Cucumber scenario
 Generate an HTML test report named cucumber_report.html in the project root.
+
 After execution, open cucumber_report.html in your web browser to view the detailed test results 
 
 ######Normal Web UI Test
@@ -101,13 +102,17 @@ To run the Playwright Web tests in terminal:
 
 npx playwright test tests/airalo_web_test.spec.js  or
 npm run WebTest
+
 This command will:
 1.Execute the tests defined in tests/airalo_web_test.spec.js.
 2.Generate an HTML test report (default Playwright reporter) in the playwright-report directory
+
 After execution, run npx playwright show-report to view the detailed HTML report in your web browser.
 
 ######Running All Tests
+
 To run both Playwright API tests and Cucumber Web UI tests sequentially:
+
 Bash
 npm run All_Tests
 
@@ -129,7 +134,7 @@ Test Case 3 -For Retrieving the list of Esims with endpoint, First Place Order A
 
 ######Cucumber.js (BDD) Web UI Tests Approach
 
-Initila Test case file is written in airalo_web_test.spec.js where I have tried to find the locators for the automation step. As a next step created a simple Page Object Test  in Second Test Case where I created separate page objects for HomePage, searchResults page and SimDetailspage.
+Initial Test case file is written in airalo_web_test.spec.js where I have tried to find the locators for the automation step. As a next step created a simple Page Object Test  in Second Test Case where I created separate page objects for HomePage, searchResults page and SimDetailspage.
 
 Next I thought of wrapping the test with Cucumber Framework and created associated Feature file, step definitions and hooks for set up and tear down.
 
