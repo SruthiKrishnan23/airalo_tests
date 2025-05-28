@@ -37,7 +37,7 @@ When('I click on {string} eSIM buy button', async function (eSimName) {
 // --- Then Steps ---
 
 Then('I should see the {string} eSIM details page with:', async function (eSimName, dataTable) {
-  const details = dataTable.rowsHash();
+  const details = await dataTable.rowsHash();
   await this.poManager.getSimDetailsPage().assertSimDetails(
     details.Operator,
     details.Coverage,

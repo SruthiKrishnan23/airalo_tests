@@ -10,5 +10,5 @@ Feature: Airalo Website UI Interaction
       | Coverage  | Japan           |
       | Data      | 1 GB            |
       | Validity  | 7 Days          |
-      | Price     | 4.50 €          |
+      | Price     | 4.50            |
     And I close the eSIM details
