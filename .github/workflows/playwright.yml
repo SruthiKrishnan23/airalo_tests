@@ -26,7 +26,7 @@ jobs:
     - name: Run All Tests
       # This command assumes 'npm run All_Tests' in your package.json
       # is configured to execute both Playwright and Cucumber tests.
-      run: xvfb-run npm run WebTest
+      run: xvfb-run npm run Cucumber_WebTest
 
     - name: Upload Test Reports
       

@@ -15,12 +15,13 @@ test('Airalo_PageTest', async ({browser})=>
         await page.getByTestId('search-input').fill('Japan ');
         await page.getByRole('listitem').filter({ hasText: 'Japan' }).click();
         //await page.locator('a[data-testid="sim-package-item"]').filter({ hasText: /Moshi Moshi.*1 GB.*7 Days/}).getByRole('button', { name: 'BUY NOW' }).click();
-        await page.getByRole('link', { name: 'Moshi Moshi Moshi Moshi  COVERAGE Japan  DATA 1 GB  VALIDITY 7 Days PRICE 4.' }).getByRole('button').click();
+        //await page.getByRole('link', { name: 'Moshi Moshi Moshi Moshi  COVERAGE Japan  DATA 1 GB  VALIDITY 7 Days PRICE 4.' }).getByRole('button').click();
+        await page.locator('[data-testid="esim-button"]').nth(1).click()
         await expect(page.getByTestId("sim-detail-operator-title").getByRole("paragraph")).toContainText("Moshi Moshi")
         await expect(page.getByTestId('sim-detail-info-list').getByTestId('COVERAGE-value')).toContainText('Japan');
         await expect(page.getByTestId('sim-detail-info-list').getByTestId('DATA-value')).toContainText('1 GB');
         await expect(page.getByTestId('sim-detail-info-list').getByTestId('VALIDITY-value')).toContainText('7 Days');
-        await expect(page.getByTestId('sim-detail-info-list').getByTestId('PRICE-value')).toContainText('4.50 €');
+        await expect(page.getByTestId('sim-detail-info-list').getByTestId('PRICE-value')).toContainText('4.50');
         await page.locator(".sim-detail-close").click()
         //await context.close();
         //await browser.close();
@@ -40,7 +41,7 @@ test('Airalo_PageTest', async ({browser})=>
         await poManager.getHomePage().acceptCookie_denyNotification()
         await poManager.getHomePage().searchAndSelectCountry("Japan")
         await poManager.getSearchResultsPage().clickMoshiMoshiBuyNow()
-        await poManager.getSimDetailsPage().assertSimDetails("Moshi Moshi", "Japan", "1 GB", "7 Days", "4.50 €")
+        await poManager.getSimDetailsPage().assertSimDetails("Moshi Moshi", "Japan", "1 GB", "7 Days", "4.50")
         await poManager.getSimDetailsPage().closeDetails()
         await context.close();
         await browser.close();

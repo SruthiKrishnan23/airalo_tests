@@ -11,7 +11,7 @@ class SimDetailsPage {
     this.closeButton = page.locator(".sim-detail-close");
   }
 
-  async assertSimDetails(operator, coverage, data, validity, price) {
+  async assertSimDetails(operator, coverage, data, validity, price) { 
     await expect(this.operatorTitle).toContainText(operator, { timeout: 10000 });
     await expect(this.coverageValue).toContainText(coverage, { timeout: 10000 });
     await expect(this.dataValue).toContainText(data , { timeout: 10000 });
