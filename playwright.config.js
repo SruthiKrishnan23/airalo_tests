@@ -1,8 +1,5 @@
 // @ts-check
 const { devices } =  require ('@playwright/test');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 /**
  * @see https://playwright.dev/docs/test-configuration
