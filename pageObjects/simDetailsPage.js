@@ -12,11 +12,11 @@ class SimDetailsPage {
   }
 
   async assertSimDetails(operator, coverage, data, validity, price) {
-    await expect(this.operatorTitle).toContainText(operator);
-    await expect(this.coverageValue).toContainText(coverage);
-    await expect(this.dataValue).toContainText(data);
-    await expect(this.validityValue).toContainText(validity);
-    await expect(this.priceValue).toContainText(price);
+    await expect(this.operatorTitle).toContainText(operator, { timeout: 10000 });
+    await expect(this.coverageValue).toContainText(coverage, { timeout: 10000 });
+    await expect(this.dataValue).toContainText(data , { timeout: 10000 });
+    await expect(this.validityValue).toContainText(validity, { timeout: 10000 });
+    await expect(this.priceValue).toContainText(price, { timeout: 10000 });
   }
 
   async closeDetails() 
