@@ -6,7 +6,7 @@
   "scripts": {
     "APITest": "npx playwright test tests/airalo_api_test.spec.js",
     "WebTest": "npx playwright test tests/airalo_web_test.spec.js",
-    "Cucumber_WebTest": "npx cucumber-js --format html:test-results/cucumber_report.html --retry 1",
+    "Cucumber_WebTest": "npx cucumber-js --config cucumber.js  --format html:test-results/cucumber_report.html --retry 1",
     "All_Tests": "npm run APITest && npm run Cucumber_WebTest"
   },
   "keywords": [],
