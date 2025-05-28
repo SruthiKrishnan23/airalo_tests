@@ -107,6 +107,11 @@ To run both Playwright API tests and Cucumber Web UI tests sequentially:
 Bash
 npm run All_Tests
 
+#Checking Trace File
+
+Use "https://trace.playwright.dev/"
+Open the trace flie downloaded from results or artifacts folder into the link to see the step by step execution
+
 Approach to Implementation
 
 Playwright API Tests Approach
