@@ -24,8 +24,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run All Tests
-      # This command assumes 'npm run All_Tests' in your package.json
-      # is configured to execute both Playwright and Cucumber tests.
+      #to Run api test and cucumber test use "xvfb-run npm run WebTest && npm run APITest
       run: xvfb-run npm run WebTest && xvfb-run npm run Cucumber_WebTest
 
     - name: Upload Test Reports
