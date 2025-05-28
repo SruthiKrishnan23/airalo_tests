@@ -87,14 +87,18 @@ Bash
 npm run All_Tests
 
 Approach to Implementation
+
 Playwright API Tests Approach
+
 Access Token is retrieved as it is used as before hook for each test case.
 Hardcoded Configuration: API credentials (CLIENT_ID, CLIENT_SECRET) and API endpoint URLs (TOKEN_URL, ORDER_ESIMS_URL, GET_ESIMS_URL) are directly defined within tests/airalo_api_test.spec.js
 Assertions: Playwright's expect assertions are used to validate API responses' status codes, data structure, and specific content.
 Test Case 1 - Checks the Presence of Access Token as it is retrieved from Before Hook
 Test Case 2 -For Placing the Order Esims with endpoint, quantity, description and packageid is passed as variables.Validated the  response body for corresponsding packageId of  all the 6 eSIMs using for Loop in assertion
 Test Case 3 -For Retrieving the list of Esims with endpoint, First Place Order API request is sent , saved the iccid’s and datecreated from previous response. Date is used to filter the get esims list. Maps are used to save sims info and validated the response to match with previously posted order data.
+
 Cucumber.js (BDD) Web UI Tests Approach
+
 Initila Test case file is written in airalo_web_test.spec.js where I have tried to find the locators for the automation step. As a next step created a simple Page Object Test  in Second Test Case where I created separate page objects for HomePage, searchResults page and SimDetailspage.
 Next I thought of wrapping the test with Cucumber Framework and created associated Feature file, step definitions and hooks for set up and tear down.
 BDD Feature: Test scenario are defined in human-readable Gherkin syntax within .feature file
