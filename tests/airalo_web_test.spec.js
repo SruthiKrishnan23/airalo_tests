@@ -43,8 +43,6 @@ test('Airalo_PageTest', async ({browser})=>
         await poManager.getSearchResultsPage().clickMoshiMoshiBuyNow()
         await poManager.getSimDetailsPage().assertSimDetails("Moshi Moshi", "Japan", "1 GB", "7 Days", "4.50")
         await poManager.getSimDetailsPage().closeDetails()
-        await context.close();
-        await browser.close();
 
 
    });
