@@ -8,6 +8,7 @@ class SearchResultsPage {
 
   async clickMoshiMoshiBuyNow() {
     await this.moshiMoshiBuyButton.click();
+    console.log('Clicked on Buy Now for a eSim Package')
   }
 
 

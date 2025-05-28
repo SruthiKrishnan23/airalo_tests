@@ -17,6 +17,11 @@ class SimDetailsPage {
     await expect(this.dataValue).toContainText(data , { timeout: 10000 });
     await expect(this.validityValue).toContainText(validity, { timeout: 10000 });
     await expect(this.priceValue).toContainText(price, { timeout: 10000 });
+    console.log(await this.operatorTitle.textContent())
+    console.log(await this.coverageValue.textContent());
+    console.log(await this.dataValue.textContent());
+    console.log(await this.validityValue.textContent());
+    console.log(await this.priceValue.textContent());
   }
 
   async closeDetails() 
