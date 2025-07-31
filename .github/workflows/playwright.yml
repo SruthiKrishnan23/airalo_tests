@@ -6,6 +6,7 @@ on:
     branches: [ main, master ]
 jobs:
   test:
+    environment: Test
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:  # 👈 This makes your GitHub env vars accessible to the test
