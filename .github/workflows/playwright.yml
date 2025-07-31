@@ -8,6 +8,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:  # 👈 This makes your GitHub env vars accessible to the test
+      API_BASE_URL: ${{ vars.API_BASE_URL }}
+      URL: ${{ vars.URL }}
+      CLIENT_ID: ${{ vars.CLIENT_ID }}
+      CLIENT_SECRET: ${{ vars.CLIENT_SECRET }}
     steps:
     - uses: actions/checkout@v4
 
