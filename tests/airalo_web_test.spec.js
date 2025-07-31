@@ -8,7 +8,6 @@ test('Airalo_PageTest', async ({browser})=>
        const context=await browser.newContext();
        const page = await context.newPage();
        const URL= process.env.URL;
-        //await page.goto("https://www.airalo.com/");
         await page.goto(URL);
         await page.getByRole('button', { name: 'ACCEPT' }).click();
         await page.getByRole('button', { name: 'DON\'T ALLOW' }).click();
