@@ -1,6 +1,5 @@
 const {test, expect}=require('@playwright/test');
 import POManager from '../pageObjects/POManager';
-import os
 
 //Initial Set Up
 test('Airalo_PageTest', async ({browser})=>
@@ -8,7 +7,7 @@ test('Airalo_PageTest', async ({browser})=>
   
        const context=await browser.newContext();
        const page = await context.newPage();
-       const URL= os.getenv("URL")
+       const URL= process.env.URL;
         //await page.goto("https://www.airalo.com/");
         await page.goto(URL);
         await page.getByRole('button', { name: 'ACCEPT' }).click();
