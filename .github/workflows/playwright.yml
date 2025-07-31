@@ -25,7 +25,7 @@ jobs:
 
     - name: Run All Tests
       #to Run api test and cucumber test use "xvfb-run npm run WebTest && npm run APITest
-      run: xvfb-run npm run WebTest && xvfb-run npm run Cucumber_WebTest && xvfb-run npm run APITest
+      run: xvfb-run npm run APITest && xvfb-run npm run WebTest && xvfb-run npm run Cucumber_WebTest 
 
     - name: Upload Test Reports
       
