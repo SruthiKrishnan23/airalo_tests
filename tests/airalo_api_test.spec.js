@@ -1,16 +1,19 @@
 // This file contains Playwright API tests for the Airalo Partner API.
 const { test, expect } = require('@playwright/test')
+import os
 
 // --- Configuration ---should not be hardcoded in realtime
 //const CLIENT_ID = process.env.AIRALO_CLIENT_ID;
 //const CLIENT_SECRET = process.env.AIRALO_CLIENT_SECRET;
 //const API_BASE_URL = process.env.AIRALO_API_BASE_URL;
-const CLIENT_ID = '7e29e2facf83359855f746fc490443e6'
-const CLIENT_SECRET = 'e5NNajm6jNAzrWsKoAdr41WfDiMeS1l6IcGdhmbb'
+const CLIENT_ID = os.getenv("CLIENT_ID")
+const CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+//const CLIENT_ID = '7e29e2facf83359855f746fc490443e6'
+//const CLIENT_SECRET = 'e5NNajm6jNAzrWsKoAdr41WfDiMeS1l6IcGdhmbb'
 
 // Airalo API Endpoints
-
-const API_BASE_URL = 'https://sandbox-partners-api.airalo.com/v2'
+const API_BASE_URL = os.getenv("API_BASE_URL")
+//const API_BASE_URL = 'https://sandbox-partners-api.airalo.com/v2'
 const TOKEN_URL = `${API_BASE_URL}/token`
 const ORDER_ESIMS_URL = `${API_BASE_URL}/orders`
 const GET_ESIMS_URL = `${API_BASE_URL}/sims`
