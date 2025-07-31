@@ -5,7 +5,9 @@ const { test, expect } = require('@playwright/test')
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const API_BASE_URL = process.env.API_BASE_URL;
-
+console.log("API_BASE_URL:", API_BASE_URL); 
+console.log("CLIENT_SECRET:", CLIENT_SECRET); 
+console.log("CLIENT_ID:", CLIENT_ID); 
 // Airalo API Endpoints
 const TOKEN_URL = `${API_BASE_URL}/token`
 const ORDER_ESIMS_URL = `${API_BASE_URL}/orders`
